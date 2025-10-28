@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataBinding.ObjetosDeDatos.MainPage">
+
+    <VerticalStackLayout>
+        <Border
+            Padding="16"
+            Margin="16"
+            Stroke="Gray">
+            <VerticalStackLayout>
+                <Label
+                    Text="Escriva un texto"/>
+                <Entry
+                    x:Name="TextEntry"
+                    BackgroundColor="Black"/>
+            </VerticalStackLayout>
+            
+        </Border>
+        <VerticalStackLayout
+            Margin="8,0"
+            Padding="16">
+            <Label
+                Text="{Binding Source={x:Reference TextEntry},Path=Text}"
+                Padding="0,16"
+                HorizontalOptions="Center"
+                FontAttributes="Italic"/>
+
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>
