@@ -1,13 +1,13 @@
 ﻿using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace DataBinding.ObjetosDeDatos.Models
 {
-    public class Contador : INotifyCollectionChanged
+    public class Contador : INotifyPropertyChanged
     {
         private int _conteo;
 
-        public event NotifyCollectionChangedEventHandler? PropertyChanged;
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public int Conteo
         {

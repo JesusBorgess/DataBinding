@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataBinding.Conexion.Views.MainPage"
+             Title="MainPage"
+             BackgroundColor="#f0f0f0">
+
+    <Grid
+        RowDefinitions="Auto,*,Auto"
+        Padding="16"
+        RowSpacing="12">
+        <Grid
+          ColumnDefinitions="*,Auto,Auto"
+          ColumnSpacing="4">
+            <Label
+                Text="Origenes del paquete:"
+                TextColor="Black"/>
+            <Button
+                Grid.Column="1"
+                Text="+"
+                BackgroundColor="White"
+                TextColor="Green"
+                FontAttributes="Bold"
+                BorderColor="Gray"
+                BorderWidth="1"
+                Clicked="onAddButtonClicked"/>
+            <Button
+                Grid.Column="2"
+                Text="X"
+                BackgroundColor="White"
+                TextColor="Red"
+                FontAttributes="Bold"
+                BorderColor="Gray"
+                BorderWidth="1"
+                Clicked="OnRemoveButtonClicked"/>
+
+
+
+        </Grid>
+
+        <ListView
+            Grid.Row="1"
+            BackgroundColor="Green"
+            x:Name="OrigenesListView"
+            ItemSelected="OnSelectedOrigenesListViewI">
+            
+        </ListView>
+        
+        <Grid
+          Grid.Row="2"
+          RowDefinitions="Auto,Auto"
+          ColumnDefinitions="Auto,*,Auto"
+          RowSpacing="8"
+          ColumnSpacing="8">
+            <Label
+              Text="Nombre"
+              VerticalOptions="Center"
+                TextColor="Black"/>
+            <Entry
+              Grid.Column="1"
+              BackgroundColor="White"
+                x:Name="NombreEntry"/>
+            <Label
+              Grid.Row="1"
+              Text="Origen"
+              VerticalOptions="Center"
+                TextColor="Black"/>
+            <Entry
+              Grid.Row="1"
+              Grid.Column="1"
+              BackgroundColor="White"
+                x:Name="OrigenEntry"/>
+            <Button
+              Grid.Row="1"
+              Grid.Column="2"
+              Text="Actualizar"
+              BackgroundColor="White"
+              TextColor="Black"
+              BorderColor="Black"
+                Clicked="OnActualizarButtonClicked"/>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>
