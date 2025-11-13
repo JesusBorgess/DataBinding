@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DataBinding.Conexion.Views"
+             xmlns:models="clr-namespace:DataBinding.Conexion.models"
+             x:DataType="local:MainPage"
              x:Class="DataBinding.Conexion.Views.MainPage"
              Title="MainPage"
              BackgroundColor="#f0f0f0">
@@ -23,7 +26,7 @@
                 FontAttributes="Bold"
                 BorderColor="Gray"
                 BorderWidth="1"
-                Clicked="onAddButtonClicked"/>
+                Clicked="OnAddButtonClicked"/>
             <Button
                 Grid.Column="2"
                 Text="X"
@@ -37,26 +40,50 @@
 
 
         </Grid>
-
-        <ListView
+        <CollectionView
             Grid.Row="1"
-            BackgroundColor="Green"
-            x:Name="OrigenesListView"
-            ItemSelected="OnSelectedOrigenesListViewI">
-            
-        </ListView>
-        
-        <Grid
-          Grid.Row="2"
-          RowDefinitions="Auto,Auto"
-          ColumnDefinitions="Auto,*,Auto"
-          RowSpacing="8"
-          ColumnSpacing="8">
+            BackgroundColor="Gray"
+            SelectionMode="Single"
+            EmptyView="No se ha agregado ningun origend de paquete"
+           x:Name="OriginesListView"
+            SelectedItem="{Binding Path=OrigenSeleccionado}"
+            ItemsSource="{Binding Path =Origenes}"
+             SelectionChanged="OrigenesListView_SelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type models:OrigenDelPaquete}">
+                    <Grid
+                      RowDefinitions="Auto,*"
+                      ColumnDefinitions="Auto,Auto"
+                        Padding="4">
+                        <CheckBox
+                          Grid.RowSpan="2"
+                          IsChecked="{Binding EstaHabilitado}"
+                          VerticalOptions="Center"/>
+                        <Label
+                           Grid.Column="1"
+                          Text="{Binding Nombre}"/>
+                        <Label
+                          Grid.Row="1"
+                          Grid.Column="1"
+                          Text="{Binding Origen}"/>
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+         
+            <Grid
+              Grid.Row="2"
+              RowDefinitions="Auto,Auto"
+              ColumnDefinitions="Auto,*,Auto"
+              RowSpacing="8"
+              ColumnSpacing="8">
             <Label
               Text="Nombre"
               VerticalOptions="Center"
                 TextColor="Black"/>
             <Entry
+                Text="{Binding Path=NombreDelOrigen}"
               Grid.Column="1"
               BackgroundColor="White"
                 x:Name="NombreEntry"/>
@@ -66,10 +93,11 @@
               VerticalOptions="Center"
                 TextColor="Black"/>
             <Entry
+                Text="{Binding Path=RutaDelOrigen}"
               Grid.Row="1"
               Grid.Column="1"
               BackgroundColor="White"
-                x:Name="OrigenEntry"/>
+               x:Name="OrigenEntry"/>
             <Button
               Grid.Row="1"
               Grid.Column="2"
@@ -82,5 +110,6 @@
         </Grid>
 
     </Grid>
+
 
 </ContentPage>
